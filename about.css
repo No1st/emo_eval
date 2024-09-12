@@ -1,0 +1,65 @@
+#about{
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.about-modal {
+    display: none;
+    z-index: 3;
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    height: 50%;
+    width: 600px;
+    transform: translate(-50%, -70%);
+    background-color: rgb(236, 236, 236);
+    border-radius: 10px;
+    color: black;
+    font-weight: lighter;
+    box-shadow: 4px 5px #5a5a5a3d;
+    overflow: hidden; 
+    padding: 5%;
+}
+
+.author-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.author {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+}
+
+.name {
+    font-weight: normal;
+}
+.id{
+font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .about-modal{
+        width: 80%;
+        transform: translate(-50%, -80%);
+    }
+
+    #answersTable {
+        margin-bottom: 50px; 
+    }
+}
+
+
+@media (max-width: 480px) {
+    .about-modal{
+        width: 80%;
+        transform: translate(-50%, -75%);
+    }
+    #answersTable {
+        margin-bottom: 50px;
+    }
+}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmoEval - ประเมินสภาวะอารมณ์ของบุคคล</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <h1>- EmoEval -</h1>
+    <p align="center" class="head-name">ประเมินสภาวะอารมณ์ของบุคคล</p>
+    <form id="personalInfoForm">
+        <h2>ข้อมูลบุคคล</h2>
+        <div class="gender-select">
+            <label for="gender">เพศ:</label>
+            <select id="gender" name="gender">
+                <option value="">กรุณาระบุ</option>
+                <option value="male">ชาย</option>
+                <option value="female">หญิง</option>
+            </select>
+        </div>
+        <br>
+        <div class="age-select">
+            <label for="age">อายุ:</label>
+            <select id="age" name="age">
+                <option value="">กรุณาระบุ</option>
+                <option value="4-12">4 - 12 ปี</option>
+                <option value="13-19">13 - 19 ปี</option>
+                <option value="20-25">20 - 25 ปี</option>
+                <option value="26-39">26 - 39 ปี</option>
+                <option value="40-59">40 - 59 ปี</option>
+                <option value="60+">60 ปีขึ้นไป</option>
+            </select>
+        </div>
+        <br>
+        <button type="submit">เริ่มแบบสอบถาม</button>
+        <p id="infoMessage" style="color: red;"></p>
+    </form>
+
+
+    <p id="about">- about -</p>
+    <div class="about-modal" id="about-modal">
+    <h2>เว็บไซต์ EmoEval</h2>
+    <h2 align="center" style="margin-top: -15px;">ประเมินสภาวะอารมณ์ของบุคคล</h2><br>
+    <h2>ผู้จัดทำ</h2>
+    <div class="author-list">
+        <div class="author">
+            <span class="name">นายธนธรณ์ บานชื่น</span>
+            <span class="id">104-0</span>
+        </div>
+        <div class="author">
+            <span class="name">นายณัฐดนัย โพธิ์บัว</span>
+            <span class="id">123-0</span>
+        </div>
+        <div class="author">
+            <span class="name">นายชาคริต รัตนวิจิตรถาวร</span>
+            <span class="id">140-4</span>
+        </div>
+        <div class="author">
+            <span class="name">นายพิพัฒน์พงษ์ มโนรมย์</span>
+            <span class="id">155-2</span>
+        </div>
+        <p align="center" style="font-weight: bold;font-size: 18px;">ปวค.2</p>
+    </div>
+    </div>
+
+
+    <form id="assessmentForm" style="display:none;">
+        <div class="form-questions">
+            <div id="questionContainer">
+                <p id="questionText"></p>
+                <div id="answerOptions"></div>
+                <div class="form-btn">
+                    <button type="button" id="prevButton">ก่อนหน้า</button>
+                    <button type="button" id="nextButton">ถัดไป</button>
+                    <button type="submit" id="submitButton" style="display:none;">ส่ง</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div id="assessmentResult"></div>
+    <div class="chart-container">
+        <canvas id="resultChart"></canvas>
+    </div>
+    
+    <div id="result-show" style="display: none;">
+        <table>
+            <tr>
+                <th colspan="2">ผลลัพธ์</th>
+            </tr>
+            <tr>
+                <td style="font-size: 14px;">ความสุข</td>
+                <td id="happy" align="center"></td>
+            </tr>
+            <tr>
+                <td style="font-size: 14px;">ความเศร้า</td>
+                <td id="sadly" align="center"></td>
+            </tr>
+            <tr>
+                <td style="font-size: 14px;">ความเครียด</td>
+                <td id="stress" align="center"></td>
+            </tr>
+        </table>
+        <p align="center" id="go-answer">แสดงคำตอบ</p>
+    </div>
+
+
+    <div id="bg-close"></div>
+    <div class="modal-answer" id="modal">
+        <div id="answer-show">
+            <table id="answersTable">
+                <thead>
+                    <tr>
+                        <th style="font-weight: 400;">ข้อ</th>
+                        <th style="font-weight: 400;">คำตอบ</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+    <div id="showCase">
+        <h1 id="moodResult"></h1>
+    </div>
+
+
+    <div id="solveSad" style="display: none;">
+        <img src="img/sad.jpg"alt="">
+        <div class="detail">
+            <h1>วิธีจัดการกับความเศร้า</h1>
+    
+            <p>ความเศร้าไม่จำเป็นต้องเป็นเรื่องอกหักรักคุดแค่อย่างเดียว ความเศร้าสามารถเกิดขึ้นได้กับสิ่งต่าง ๆ รอบตัว เช่น
+                ตกงาน แมวตาย เจ้านายไม่ดี ความสูญเสีย สอบไม่ติด ฯลฯ เรามาเรียนรู้ที่จะจัดการกับความเศร้ากันในบทความนี้
+                และความเศร้ากับภาวะซึมเศร้าเหมือนหรือต่างกันอย่างไร พัฒนาไปสู่โรคซึมเศร้าได้มั้ย เราไปหาคำตอบกัน</p>
+    
+            <p>เพราะสิ่งกระตุ้นอารมณ์เศร้าของแต่ละคนแตกต่างกัน
+                บางคนสามารถทนได้แม้จะประสบกับเหตุการณ์รุนแรงก็สามารถนำตัวเองและความคิดออกจากเหตุการณ์นั้นได้
+                แต่ในบางคนที่ไม่สามารถจัดการกับความเศร้าได้ วนลูบอยู่กับความเศร้าจนทำให้สมองกลายเป็นสมองเศร้า
+                สมองเมื่อเศร้านานวันเข้า ก็จะเริ่มกลายเป็นโรคซึมเศร้า</p>
+    
+            <p>แน่นอนว่าความเศร้ามักจะมาพร้อมความสูญเสียอะไรบางอย่าง แต่ความเศร้าก็ไม่ได้เลวร้ายเสมอไป
+                เพราะความเศร้าจะทำให้เรารู้จัก "ความสุข" เมื่อเราได้จัดการความเศร้าและพาตัวเองออกมาจากสถานการณ์นั้น ๆ
+                ได้แล้ว ความเศร้าที่มีมันจะค่อย ๆ เปลี่ยนเป็นความสุข การได้รับรู้ถึงความแตกต่างสองขั้นนี้
+                มนุษย์เท่านั้นที่จะเข้าใจมัน</p>
+    
+            <h2>วิธีรับมือกับความเศร้า</h2>
+            <ul>
+                <li><strong>1. ยอมรับในสิ่งที่เกิดขึ้น</strong><br>
+                    การยอมรับในสิ่งที่เกิดขึ้น ไม่ว่าจะเป็นเรื่องความรัก หรือแม้กระทั่งสอบไม่ติดก็ตาม
+                    หากเรายอมรับมันได้ว่าเราไม่สามารถย้อนเวลากลับไปแก้ไขอดีตได้
+                    ยอมรับเพื่อให้ตัวเองพร้อมที่จะก้าวไปสู่บทใหม่ ๆ ของชีวิต การทำใจยอมรับนี้
+                    เป็นเหมือนการให้กำลังใจตัวเองเพื่อให้รอดจากความเศร้านี้ไปได้
+                </li>
+                <li><strong>2. ให้เวลากับตัวเองได้ทบทวน</strong><br>
+                    เรียนรู้จากความผิดพลาดเพื่อไม่ให้เกิดเหตุการณ์แบบนั้นอีก หากอยากจะร้องไห้ ก็จงร้องออกมา!
+                    เพราะการร้องไห้เป็นการปลดปล่อยพลังงานลบออกจากตัว เมื่อร้องไห้แล้วจะรู้สึกดีขึ้น การเขียนบันทึก ฟังเพลง
+                    หรือใช้เวลากับครอบครัวและเพื่อน ก็ช่วยได้
+                </li>
+                <li><strong>3. หันมาใส่ใจตัวเองให้มากขึ้น</strong><br>
+                    ลองหันมาใส่ใจตัวเอง เช่น ทำเล็บ หาของอร่อย ๆ กิน หรือซื้อคอร์สออกกำลังกาย
+                    นี่เป็นการเยียวยาตัวเองโดยไม่ต้องพึ่งพาคนอื่น
+                </li>
+                <li><strong>4. นัดแก๊งค์เพื่อนสนิท</strong><br>
+                    นัดพบเพื่อนสนิทเพื่อระบายความรู้สึก การพูดคุยกับเพื่อนจะช่วยให้คุณได้รับมุมมองใหม่ ๆ และคลายความเศร้าได้
+                </li>
+            </ul>
+    
+            <h2>เคล็ดลับเชิดใส่ความเศร้า</h2>
+
+                <ul>
+                    <li>ต้องเชื่อว่าสิ่งต่าง ๆ มันมีสองด้าน มีขึ้นก็มีลง มีเศร้าเดี๋ยวก็จะมีสุข</li>
+                    <li>ค่อย ๆ ทำกิจกรรมที่ทำให้มีความสุขทีละข้อ เพื่อความสนุกและความสำเร็จ</li>
+                    <li>จัดการปัญหาทีละเรื่อง ไม่ควรนำทุกปัญหามารวมกัน</li>
+                    <li>หากิจกรรมเพื่อสังคม เพื่อช่วยเยียวยาจิตใจตัวเอง</li>
+                    <li>ลองแสดงความเศร้าในวิธีใหม่ เช่น เขียนไดอารี่หรือระบายสีเพื่อบำบัด</li>
+                    <li>หากรู้สึกไม่ดีขึ้น ควรปรึกษาผู้เชี่ยวชาญ</li>
+                </ul>
+                <p class="credit">ที่มา : www.roojai.com/article/health-guide/how-to-move-on-to-happiness/</p> 
+        </div>
+          
+    </div>
+    <div id="solveStress" style="display: none;">
+        <img src="img/stressguy.jpg" alt="">
+        <div class="detail">
+            <h1>การจัดการความเครียด</h1>
+    
+            <p>ความเครียดส่วนหนึ่งมาจากความคิดของคนเรานั่นเอง คนที่มองโลกในแง่ร้าย คิดมาก วิตกกังวลสูง จะมีความเครียดมาก
+                หากรู้จักปรับเปลี่ยนความคิด มาคิดในแง่มุมใหม่ จะช่วยให้เครียดน้อยลงและมีความสุขใจมากขึ้น</p>
+    
+            <h2>อาการแบบไหนที่บ่งบอกว่ากําลังเครียด?</h2>
+            <p>ก่อนอื่น ควรสังเกตตัวเองว่าเป็นคนคิดมากหรือไม่ หรือชอบคิดในลักษณะวนเวียนหาทางออกไม่ได้ ไม่รู้ว่าปัญหาคืออะไร
+                รู้สึกสับสนไปหมด ถ้าเป็นแบบนี้ ควรหยุดคิดสักพัก
+                แล้วลองหันมาจัดการความเครียดอย่างเป็นระบบและปรับเปลี่ยนความคิดเสียใหม่</p>
+    
+            <h2>วิธีรับมือเมื่อต้องเผชิญกับความเครียด</h2>
+            <ol>
+                <li><strong>จัดการที่ต้นตอของปัญหา</strong>
+                    <p>สำรวจดูว่า ความเครียดนั้นมีสาเหตุมาจากอะไร เช่น เรื่องงาน เรื่องส่วนตัว
+                        บางคนอาจเครียดจากหลายปัญหาที่เกิดขึ้นพร้อมกันก็ได้
+                        จากนั้นค่อยพิจารณาว่าเราจะจัดการกับปัญหาที่ทำให้เครียดด้วยวิธีไหน ซึ่งมีหลากหลายวิธี เช่น แก้ไข
+                        หลีกเลี่ยง หรือยอมรับปัญหา โดยแต่ละวิธีอาจแตกต่างกันไปตามสถานการณ์และประสบการณ์ของบุคคล</p>
+                </li>
+                <li><strong>จัดการอารมณ์ที่เกิดขึ้น</strong>
+                    <p>ในขณะที่เกิดความเครียด บุคคลจะมีการแสดงออกทางอารมณ์ในเชิงลบแตกต่างกันไป บางคนอาจจะอยู่ในอารมณ์โกรธ
+                        เศร้า หรือท้อแท้ สิ้นหวัง หากปล่อยให้อารมณ์เหล่านี้คงอยู่นานเกินไป จะส่งผลเสียต่อสภาพจิตใจในระยะยาว
+                        จึงควรจัดการกับอารมณ์ที่เกิดขึ้น เช่น เมื่อเกิดอารมณ์โกรธ ควรควบคุมตนเอง ไม่แสดงอาการโมโหร้ายออกไป
+                        หรือพาลใส่คน สัตว์ หรือสิ่งของรอบข้าง เมื่อเกิดอารมณ์เศร้า
+                        ควรหาทางระบายออกด้วยการพูดคุยกับคนที่ไว้ใจ หรือพักผ่อนเพื่อให้สมองปลอดโปร่ง หากไม่กล้าพูดคุย
+                        อาจใช้การเขียนระบายความรู้สึกแทน</p>
+                </li>
+                <li><strong>การดูแลตัวเอง</strong>
+                    <p>คําว่า “จิตเป็นนาย กายเป็นบ่าว” ยังคงใช้ได้อยู่เสมอ เพราะมนุษย์ทุกคนย่อมต้องพบเจอกับปัญหา
+                        ไม่มีใครที่สามารถหลีกเลี่ยงได้ สิ่งสำคัญคือต้องดูแลร่างกายและจิตใจให้เข้มแข็ง หมั่นฝึกควบคุมอารมณ์
+                        รวมถึงตั้งสติให้พร้อมเพื่อเตรียมรับมือกับปัญหาที่อาจนำไปสู่ความเครียดได้</p>
+                </li>
+            </ol>
+
+            <p class="credit">ที่มา : https://pharmacy.mahidol.ac.th/</p>
+        </div>
+    </div>
+    <button id="backToTop" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
+</body>
+</html>

@@ -1,0 +1,77 @@
+/* CSS สำหรับ modal */
+.modal-answer {
+    display: none;
+    z-index: 3;
+    position: fixed; /* เปลี่ยนจาก absolute เป็น fixed */
+    top: 50%;
+    left: 50%;
+    height: 80%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(253, 255, 246);
+    border-radius: 10px;
+    color: black;
+    font-weight: lighter;
+    box-shadow: 4px 5px #8888883d;
+    overflow: hidden; /* ซ่อนส่วนที่เกิน */
+}
+
+/* CSS สำหรับพื้นหลังของ modal */
+#bg-close {
+    display: none;
+    position: fixed; /* เปลี่ยนจาก absolute เป็น fixed */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(136, 136, 136, 0.658);
+    overflow-x: hidden;
+}
+
+/* CSS สำหรับตารางแสดงคำตอบ */
+#answer-show {
+    position: relative;
+    height: 100%; /* ให้ครอบคลุมพื้นที่ของ modal */
+    overflow-y: auto; /* ทำให้เลื่อนแนวตั้งได้ */
+    padding: 20px; /* เพิ่ม padding เพื่อให้มีพื้นที่ */
+}
+
+/* CSS สำหรับตารางคำตอบ */
+#answersTable {
+    border: 1px solid rgb(0, 0, 0);
+    border-collapse: collapse;
+    width: 100%; /* ใช้ความกว้างเต็มที่ของ modal */
+    margin: 0 auto;
+    table-layout: fixed; /* จำกัดขนาดของตาราง */
+    word-wrap: break-word; /* แก้ไขการล้นของคำยาวๆ */
+    margin-bottom: 50px;
+}
+
+#answersTable th, #answersTable td {
+    padding: 10px; /* เพิ่ม padding ภายในเซลล์ */
+    text-align: left;
+    border: 1px solid #ddd; /* ขอบของเซลล์ */
+    font-weight: 300;
+}
+
+/* CSS สำหรับขนาดของ modal บนอุปกรณ์ที่มีความกว้างต่ำกว่า 768px */
+@media (max-width: 768px) {
+    .modal-answer{
+        width: 80%;
+    }
+
+    #answersTable {
+        margin-bottom: 50px; /* แก้ไขการล้นของคำยาวๆ */
+    }
+}
+
+/* CSS สำหรับขนาดของ modal บนอุปกรณ์ที่มีความกว้างต่ำกว่า 480px */
+@media (max-width: 480px) {
+    .modal-answer{
+        width: 90%;
+    }
+    #answersTable {
+        margin-bottom: 50px; /* แก้ไขการล้นของคำยาวๆ */
+    }
+}

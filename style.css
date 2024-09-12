@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+
+body {
+    font-family: "Noto Sans Thai", sans-serif;
+    background-color: #fffef8;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.container {
+    max-width: 90%; /* ลดขนาดให้เหมาะสมกับหน้าจอเล็ก */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+}
+
+.head-name {
+    margin-top: -20px;
+}
+
+#questionText {
+    font-size: 1.2em; /* ใช้ em เพื่อปรับขนาดตามขนาดของข้อความ */
+}
+
+#answerOptions {
+    margin: 15px 0;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 24px; /* ขนาดปุ่มที่เหมาะสม */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover, button:active {
+    background-color: #218838;
+}
+
+.chart-container {
+    width: 90%; /* ใช้ความกว้าง 90% ของหน้าจอ */
+    max-width: 800px; /* ขนาดสูงสุด */
+    height: 300px; /* ความสูงที่เหมาะสม */
+    margin: 20px auto; /* จัดกลาง */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#resultChart {
+    width: 100%;
+    height: 100%;
+}
+
+#prevButton:disabled {
+    background-color: #ccc;
+}
+
+#personalInfoForm, #assessmentForm {
+    width: 90%; /* ใช้ความกว้าง 90% ของหน้าจอ */
+    max-width: 600px; /* ขนาดสูงสุด */
+    margin: 20px auto; /* จัดกลาง */
+    height: auto; /* ให้ความสูงเป็นอัตโนมัติ */
+    padding: 20px;
+    background-color: #f3f2e7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.gender-select .age-select {
+    display: flex;
+    float: left;
+} 
+
+select {
+    font-family: "Noto Sans Thai", sans-serif;
+    width: 100%; /* ใช้ความกว้างเต็มที่ */
+    max-width: 200px; /* ขนาดสูงสุด */
+    border-radius: 5px;
+}
+
+.select-selected:after {
+    font-family: "Noto Sans Thai", sans-serif;
+}
+
+#questionText {
+    padding-top: 5%;
+    font-size: 1.5em; /* ขนาดตัวอักษรที่ใหญ่ขึ้น */
+}
+
+#answerOptions {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-btn {
+    margin-top: 20px; /* เพิ่มระยะห่างจากเนื้อหา */
+}
+
+.form-questions {
+    margin: 4%;
+}
+
+table, th, td {
+    border: 1px solid rgb(0, 0, 0);
+    border-collapse: collapse;
+    width: 20%; /* ใช้ความกว้างเต็มที่ */
+    margin: 0 auto;
+}
+
+td {
+    padding: 8px; /* เพิ่ม padding สำหรับเซลล์ */
+}
+
+#assessmentResult {
+    text-align: center;
+    margin-top: 5%;
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50%;
+}
+
+#solveStress,#solveSad {
+    margin: 0 auto;
+    width: 60%;
+    /* background-color: #ddd; */
+}
+.detail{
+    width: 50%;
+    margin: 0 auto;
+}
+
+#solveStress h1,  
+#solveStress h2 {
+    color: #2c3e50;
+}
+
+#solveStress h1 {
+    font-size: 24px;
+}
+#solveStress h2 {
+    font-size: 20px;
+    margin-top: 20px;
+}
+#solveStress p {
+    margin: 10px 0;
+}
+#solveStress ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+#solveStress li {
+    margin-bottom: 10px;
+}
+
+#go-answer{
+    cursor: pointer;
+}
+
+#go-answer:hover{
+    color: #ff0000;
+}
+.credit{
+    font-size: 12px;
+    padding-top: 50px;
+}
+
+/* CSS สำหรับปุ่มกลับไปด้านบน */
+#backToTop {
+    display: none; /* ซ่อนปุ่มเริ่มต้น */
+    position: fixed;
+    bottom: 20px; /* ระยะห่างจากด้านล่าง */
+    right: 20px; /* ระยะห่างจากด้านขวา */
+    background-color: #feffa8; /* สีพื้นหลังของปุ่ม */
+    color: #000000; /* สีข้อความ */
+    border: none; /* ไม่มีขอบ */
+    border-radius: 5px; /* มุมโค้งมน */
+    padding: 10px 20px; /* ขนาดของปุ่ม */
+    font-size: 16px; /* ขนาดข้อความ */
+    cursor: pointer; /* แสดงเป็นรูปแบบเคอร์เซอร์ที่คลิกได้ */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* เงา */
+    z-index: 999; /* ทำให้ปุ่มอยู่บนสุด */
+}
+
+#backToTop:hover {
+    background-color: #fff8bb; /* เปลี่ยนสีพื้นหลังเมื่อวางเมาส์ */
+}
+
+
+
+/* Media Queries สำหรับหน้าจอเล็ก */
+@media (max-width: 768px) {
+    #questionText {
+        font-size: 1.2em; /* ขนาดตัวอักษรเล็กลง */
+    }
+
+    button {
+        padding: 10px 20px; /* ขนาดปุ่มเล็กลง */
+    }
+
+    .chart-container {
+        height: 250px; /* ลดความสูงสำหรับหน้าจอเล็ก */
+    }
+
+    table, th, td {
+        width: 40%; /* ใช้ความกว้างเต็มที่ */
+    }
+
+    #solveStress,#solveSad {
+        width: 90%;
+    }
+
+    .detail{
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px; /* ลด padding สำหรับหน้าจอเล็กมาก */
+    }
+
+    #personalInfoForm, #assessmentForm {
+        width: 100%; /* ใช้ความกว้างเต็มที่ */
+        padding: 15px; /* ลด padding */
+    }
+
+    select {
+        max-width: 100%; /* ใช้ความกว้างเต็มที่ */
+    }
+    table, th, td {
+        width: 60%; /* ใช้ความกว้างเต็มที่ */
+    }
+
+    #solveStress,#solveSad {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .detail{
+        width: 80%;
+    }
+}
